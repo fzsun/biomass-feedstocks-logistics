@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>ALGORITHM</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+<body>
+	<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<!-- <script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script> -->
+			<!-- <script type="assets/js/biomass_util.js"></script> -->
+			<script type="text/javascript">
+			function submit(){
+				<!--var sysnum=document.getElementById('sysnum').value;-->
+				var t_time=document.getElementById('t_limit').value;
+				//alert('Inside submit')
+				// REST API call.
+				var http = new XMLHttpRequest();
+			    http.open("POST", "http://localhost:8081/biomass/rest/services/tsp", true);
+			    http.setRequestHeader("Content-Type", "application/json");
+			    data = {"t_time":t_time};
+				  http.onreadystatechange = function()
+				  {
+				      if(http.readyState == 4 && http.status == 200) {
+				          var json = JSON.parse(http.responseText);
+				          //alert(json.Result);
+				          var output_span = document.getElementById('output');
+				          var content = document.createTextNode(json.Result);
+				          output_span.appendChild(content); 
+				         
+				      }
+				  }
+				  http.send(JSON.stringify(data));
+			}
+			</script>
+
+   <!-- Main -->
+				<div id="main">
+					<div class="inner">
+					<!-- Boxes -->
+						<div class="thumbnails">
+
+							<div class="box">
+								<a class="image fit"><img src="images/pic01.jpg" alt="" /></a>
+								<div class="inner">
+									<h3>INPUT:</h3>
+									<p>TODO: Some info about the type of Input required...</p>
+									<form name="form1" id="form1" method="get">
+									   <!-- <a href="https://www.ise.vt.edu/people/faculty/sarin.html" class="button fit">About</a> -->
+									  <!-- <input required="required" type="text" name="sysnum" id="sysnum">-->
+									   <input required="required" type="text" name="t_limit" id="t_limit"></form>
+									   <button type="button" onclick="submit()">Submit</button>
+								</div>
+							</div>
+
+							<div class="box">
+								<a class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+								<div class="inner">
+									<h3>RESULTS:</h3>
+									<p>Explain Results : If Required!!</p>
+									<!-- <a href="https://www.ise.vt.edu/people/graduate/phd/sun-fangzhou.html" class="button style2 fit">Student</a> -->
+									<span id="output"></span>
+								</div>
+							</div>
+
+							<div class="box">
+								<a class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+								<div class="inner">
+									<h3>About Algo</h3>
+									<p> to write ...</p>
+									<a href="https://www.ise.vt.edu/about/news/2016/fall/subhash-sarin-fund-usda-doe-brdi.html" class="button style3 fit">Watch</a>
+								</div>
+							</div>
+							
+							<div class="box">
+								<a class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+								<div class="inner">
+									<h3>Constrains</h3>
+									<p> to write ...</p>
+									<a href="https://www.ise.vt.edu/about/news/2016/fall/subhash-sarin-fund-usda-doe-brdi.html" class="button style3 fit">Watch</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+   
+</body>
+</html>
