@@ -5,21 +5,20 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="/assets/js/jquery.min.js"></script>
+		<script type="text/javascript" src="config.json"></script>
 	</head>
 <body>
 	<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<!-- <script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script> -->
-			<!-- <script type="assets/js/biomass_util.js"></script> -->
 			<script type="text/javascript">
 			function submit(){
-				var sysnum=document.getElementById('sysnum').value;
-				var t_time=document.getElementById('t_limit').value;
+			   var sysnum=document.getElementById('sysnum').value;
+			   var t_time=document.getElementById('t_limit').value;
 				//alert('Inside submit')
 				// REST API call.
 				var http = new XMLHttpRequest();
-			    http.open("POST", "http://localhost:8081/biomass/rest/services", true);
+				var url = document.origin+"/biomass/rest/services";
+			    http.open("POST", url, true);
 			    http.setRequestHeader("Content-Type", "application/json");
 			    data = {"sysnum":sysnum,"t_time":t_time};
 				  http.onreadystatechange = function()
@@ -30,7 +29,6 @@
 				          var output_span = document.getElementById('output');
 				          var content = document.createTextNode(json.Result);
 				          output_span.appendChild(content); 
-				         
 				      }
 				  }
 				  http.send(JSON.stringify(data));

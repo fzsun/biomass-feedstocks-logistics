@@ -19,7 +19,8 @@
 				//alert('Inside submit')
 				// REST API call.
 				var http = new XMLHttpRequest();
-			    http.open("POST", "http://localhost:8081/biomass/rest/services/tsp", true);
+				var url = document.origin+"/biomass/rest/services/tsp";
+			    http.open("POST", url, true);
 			    http.setRequestHeader("Content-Type", "application/json");
 			    data = {"t_time":t_time};
 				  http.onreadystatechange = function()
